@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2am 4118</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="toggle" onclick="toggleDark()">🌙</div>
+
+<div class="profile">
+    <img src="avatar.jpg" id="avatar">
+    <h1 class="neon">2am 4118</h1>
+    <h2 class="Sở Thích"
+    <p class="bio">Audition • Old Hidden Items • Mix and Max</p>
+</div>
+
+<div class="section">
+    <h2>Kỹ Năng</h2>
+    <div class="tags">
+        <span>🎮 D8 Đối-Nối</span>
+        <span>🐢 D8 SLOWLY 🎼</span>
+        <span>🎵 Beat Lệch Track</span>
+    </div>
+</div>
+
+<div class="section">
+    <h2>Chia Sẻ Kinh Nghiệm</h2>
+    <p class="text">
+        Open to communicate about D8 Skills, Beat Lệch Track, Audition Gameplay and Music Flow.
+    </p>
+</div>
+
+<!-- SLIDER (AUTO + SWIPE) -->
+<div class="slider" id="slider">
+    <img src="anh1.jpg" class="slide active">
+    <img src="anh2.jpg" class="slide">
+    <img src="anh3.jpg" class="slide">
+    <img src="anh4.jpg" class="slide">
+    <img src="anh5.jpg" class="slide">
+</div>
+
+<!-- MUSIC -->
+<audio id="music" src="music.mp3" loop></audio>
+<div class="music-btn" onclick="toggleMusic()">🎧</div>
+
+<script>
+// Avatar zoom
+document.getElementById("avatar").onclick = () => {
+    const z = document.createElement("div");
+    z.className = "zoom";
+    z.innerHTML = `<img src="avatar.jpg">`;
+    z.onclick = () => z.remove();
+    document.body.appendChild(z);
+};
+
+// Slider auto + swipe
+let index = 0;
+const slides = document.querySelectorAll(".slide");
+
+function showSlide(i){
+    slides.forEach(s => s.classList.remove("active"));
+    slides[i].classList.add("active");
+}
+
+setInterval(() => {
+    index = (index + 1) % slides.length;
+    showSlide(index);
+}, 3000);
+
+// Swipe
+let startX = 0;
+const slider = document.getElementById("slider");
+
+slider.addEventListener("touchstart", e => {
+    startX = e.touches[0].clientX;
+});
+
+slider.addEventListener("touchend", e => {
+    let endX = e.changedTouches[0].clientX;
+    if(endX < startX - 50) index = (index + 1) % slides.length;
+    if(endX > startX + 50) index = (index - 1 + slides.length) % slides.length;
+    showSlide(index);
+});
+
+// Dark mode
+function toggleDark(){
+    document.body.classList.toggle("dark");
+}
+
+// Music (iPhone rule)
+function toggleMusic(){
+    const m = document.getElementById("music");
+    m.paused ? m.play() : m.pause();
+}
+</script>
+
+</body>
+</html>
