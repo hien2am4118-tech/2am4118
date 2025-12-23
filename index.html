@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2am 4118</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+/* HERO CENTER */
+.hero{
+    text-align:center;
+    padding:50px 15px 30px;
+}
+
+.welcome{
+    font-size:18px;
+    letter-spacing:2px;
+    color:#bbb;
+    margin-bottom:5px;
+}
+
+.menu{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    margin:15px 0;
+}
+
+.menu a{
+    color:#0ff;
+    text-decoration:none;
+    font-size:14px;
+}
+
+.menu a:hover{
+    text-shadow:0 0 8px #0ff;
+}
+
+.music-btn-main{
+    margin-top:20px;
+    padding:10px 22px;
+    border-radius:25px;
+    border:1px solid #0ff;
+    background:transparent;
+    color:#0ff;
+    font-size:14px;
+    cursor:pointer;
+}
+
+.music-btn-main:hover{
+    box-shadow:0 0 15px #0ff;
+}
+
+/* CENTER SECTIONS */
+.section h2,
+.profile,
+.slider{
+    text-align:center;
+}
+
+/* PROFILE FIX */
+.profile img{
+    margin:0 auto;
+    display:block;
+}
+</style>
+</head>
+
+<body>
+
+<!-- DARK MODE -->
+<div class="toggle" onclick="toggleDark()">🌙</div>
+
+<!-- HERO -->
+<div class="hero">
+    <div class="welcome">Welcome To My Website</div>
+    <h1 class="neon">2am 4118</h1>
+
+    <nav class="menu">
+        <a href="#about">About</a>
+        <a href="#projects">My Projects</a>
+        <a href="#contact">Contact Me</a>
+    </nav>
+
+    <button class="music-btn-main" onclick="toggleMusic()">
+        ▶ Play Audition Music
+    </button>
+</div>
+
+<!-- PROFILE -->
+<div class="profile" id="about">
+    <img src="avatar.jpg" id="avatar">
+    <p class="bio">Audition • Old Hidden Items • Mix and Max</p>
+</div>
+
+<!-- SKILLS -->
+<div class="section">
+    <h2>Skills</h2>
+    <div class="tags">
+        <span>🎮 D8 Link</span>
+        <span>🐢 D8 Slowly</span>
+        <span>🎵 Beat Off Track</span>
+    </div>
+</div>
+
+<!-- COMMUNICATION -->
+<div class="section" id="contact">
+    <h2>Communication</h2>
+    <p class="text">
+        Open to communicate about D8 Skills, Beat Off Track, Audition Gameplay and Music Flow.
+    </p>
+</div>
+
+<!-- PROJECT SLIDER -->
+<div class="slider" id="slider">
+    <img src="anh1.jpg" class="slide active">
+    <img src="anh2.jpg" class="slide">
+    <img src="anh3.jpg" class="slide">
+    <img src="anh4.jpg" class="slide">
+    <img src="anh5.jpg" class="slide">
+</div>
+
+<!-- MUSIC -->
+<audio id="music" src="music.mp3" loop></audio>
+
+<script>
+// AVATAR ZOOM
+document.getElementById("avatar").onclick = () => {
+    const z = document.createElement("div");
+    z.className = "zoom";
+    z.innerHTML = `<img src="avatar.jpg">`;
+    z.onclick = () => z.remove();
+    document.body.appendChild(z);
+};
+
+// SLIDER AUTO
+let index = 0;
+const slides = document.querySelectorAll(".slide");
+
+function showSlide(i){
+    slides.forEach(s => s.classList.remove("active"));
+    slides[i].classList.add("active");
+}
+
+setInterval(() => {
+    index = (index + 1) % slides.length;
+    showSlide(index);
+}, 3000);
+
+// SWIPE MOBILE
+let startX = 0;
+const slider = document.getElementById("slider");
+
+slider.addEventListener("touchstart", e => {
+    startX = e.touches[0].clientX;
+});
+
+slider.addEventListener("touchend", e => {
+    let endX = e.changedTouches[0].clientX;
+    if(endX < startX - 50) index = (index + 1) % slides.length;
+    if(endX > startX + 50) index = (index - 1 + slides.length) % slides.length;
+    showSlide(index);
+});
+
+// DARK MODE
+function toggleDark(){
+    document.body.classList.toggle("dark");
+}
+
+// MUSIC (iPhone OK)
+function toggleMusic(){
+    const m = document.getElementById("music");
+    m.paused ? m.play() : m.pause();
+}
+</script>
+
+</body>
+</html>
