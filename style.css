@@ -1,0 +1,158 @@
+*{box-sizing:border-box;scroll-behavior:smooth}
+
+body{
+margin:0;
+font-family:"Segoe UI",Arial,sans-serif;
+background:radial-gradient(circle at top,#2b4f88,#0f1c36 55%,#070b18);
+color:#f4f7ff;
+overflow-x:hidden;
+}
+
+body.dark{
+background:radial-gradient(circle at top,#345fa3,#14244a 55%,#080d1f);
+}
+
+/* STAR */
+#stars{position:fixed;inset:0;z-index:-1}
+.star{
+position:absolute;
+top:-10px;
+width:2px;height:2px;
+background:rgba(255,255,255,.8);
+border-radius:50%;
+animation:fall linear infinite;
+}
+@keyframes fall{to{transform:translateY(110vh);opacity:0}}
+
+/* TOGGLE */
+.toggle{
+position:fixed;
+top:15px;
+right:15px;
+font-size:22px;
+cursor:pointer;
+}
+
+/* HERO */
+.hero{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+}
+.welcome{
+font-size:28px;
+color:#ffffff;
+text-shadow:0 0 20px rgba(255,255,255,.5);
+}
+.neon{
+font-size:48px;
+color:#7cf3ff;
+text-shadow:0 0 14px #7cf3ff,0 0 34px #4bcaff;
+}
+
+/* MENU */
+.menu{margin:20px 0}
+.menu a{
+color:#ffffff;
+margin:0 14px;
+text-decoration:none;
+font-weight:500;
+position:relative;
+}
+.menu a::after{
+content:"";
+position:absolute;
+left:0;bottom:-6px;
+width:0;height:2px;
+background:#7cf3ff;
+transition:.3s;
+}
+.menu a:hover::after{width:100%}
+
+/* MUSIC */
+.music-btn-main{
+margin-top:18px;
+padding:12px 28px;
+border-radius:30px;
+border:none;
+cursor:pointer;
+font-weight:bold;
+background:linear-gradient(135deg,#7cf3ff,#6aa8ff);
+color:#001018;
+box-shadow:0 0 30px rgba(124,243,255,.6);
+}
+
+/* PROFILE */
+.profile{text-align:center;margin-top:-40px}
+.profile.up{margin-top:-80px}
+.profile img{
+width:150px;
+height:150px;
+border-radius:50%;
+border:3px solid #7cf3ff;
+cursor:pointer;
+transition:.2s;
+}
+.bio{
+margin-top:12px;
+font-size:18px;
+color:#eef2ff;
+}
+
+/* SECTION */
+.section{
+padding:45px 15px;
+text-align:center;
+}
+.section h2{margin-bottom:18px}
+
+/* TAGS */
+.tags span{
+display:inline-block;
+margin:6px;
+padding:9px 18px;
+border-radius:22px;
+background:rgba(124,243,255,.2);
+border:1px solid #7cf3ff;
+}
+
+/* TEXT */
+.text{
+max-width:620px;
+margin:auto;
+line-height:1.6;
+color:#f1f5ff;
+}
+
+/* GALLERY (ẢNH XẾP DỌC) */
+.gallery{
+max-width:420px;
+margin:30px auto;
+display:flex;
+flex-direction:column;
+gap:20px;
+}
+.gallery img{
+width:100%;
+border-radius:16px;
+object-fit:cover;
+box-shadow:0 0 30px rgba(0,0,0,.55);
+}
+
+/* ZOOM */
+.zoom{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.9);
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:999;
+}
+.zoom img{
+max-width:90%;
+max-height:90%;
+}
